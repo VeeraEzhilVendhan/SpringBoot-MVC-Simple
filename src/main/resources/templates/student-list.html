@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Student List</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+<body>
+
+  <div class="container">
+    <br/>
+    <h2>Students List </h2>
+    <br/>
+      <table class="table table-stripped">
+        <thead>
+          <tr>
+            <th>Roll No</th>
+            <th>Name</th>
+            <th>Gender</th>
+            <th>Grade</th>
+            <th>Date of Birth</th>
+            <th>Email</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr th:each="emp : ${employees}">
+            <td th:text="${emp.rollNo}" />
+            <td th:text="${emp.name}" />
+            <td th:text="${emp.gender}" />
+            <td th:text="${emp.grade}" />
+            <td th:text="${emp.dob}" />
+            <td th:text="${emp.email}" />
+            <td>
+              <a th:href="@{/view-student(id=${emp.id})}" style="color:royalblue;">Edit</a>
+              <a th:href="@{/delete-student(id=${emp.id})}" style="color:red;" onclick="if(!(confirm('are you sure you want to delete this student ? '))) return false">Delete</a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    <a th:href="@{/student-home}" >Home</a>
+  </div>
+</body>
+</html>
